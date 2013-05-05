@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Michael Hoffer <info@michaelhoffer.de>
+ * @author Thomas Licht <thomas.licht@stud.uni-frankfurt.de>
  */
 @ComponentInfo(name="MyClass", category="Sunflow")
 public class MyClass implements Serializable {
@@ -26,7 +26,7 @@ public class MyClass implements Serializable {
      * @return the string
      */
     public String getString() {
-        return string;
+        return "test";
     }
 
     /**
