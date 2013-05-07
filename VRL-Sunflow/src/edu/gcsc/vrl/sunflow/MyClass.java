@@ -26,7 +26,7 @@ public class MyClass implements Serializable {
      * @return the string
      */
     public String getString() {
-        return "test";
+        return "test1";
     }
 
     /**

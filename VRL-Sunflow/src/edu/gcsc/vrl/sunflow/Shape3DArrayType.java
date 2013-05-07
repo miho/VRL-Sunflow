@@ -101,7 +101,7 @@ import javax.swing.JMenuItem;
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
 @TypeInfo(type = Shape3DArray.class, input = false, output = true, style = "default")
-public class Shape3DArrayType2 extends TypeRepresentationBase {
+public class Shape3DArrayType extends TypeRepresentationBase {
 
     private static final long serialVersionUID = -4516600302355830671L;
     private BranchGroup shapeGroups[] = new BranchGroup[2];
@@ -129,7 +129,7 @@ public class Shape3DArrayType2 extends TypeRepresentationBase {
      * @param canvas the 3D canvas
      * @param universeCreator the universe creator
      */
-    public Shape3DArrayType2(VCanvas3D canvas, UniverseCreator universeCreator) {
+    public Shape3DArrayType(VCanvas3D canvas, UniverseCreator universeCreator) {
         init();
         init3DView(canvas, universeCreator);
     }
@@ -137,7 +137,7 @@ public class Shape3DArrayType2 extends TypeRepresentationBase {
     /**
      * Constructor.
      */
-    public Shape3DArrayType2() {
+    public Shape3DArrayType() {
         init();
         if (!VGraphicsUtil.NO_3D) {
             VCanvas3D c = null;

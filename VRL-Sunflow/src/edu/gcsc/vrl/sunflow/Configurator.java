@@ -33,6 +33,9 @@ public class Configurator extends VPluginConfigurator {
         // 
         exportPackage("edu.gcsc.vrl.sunflow");
 //        disableAccessControl(true);
+        
+        //this.exportClass("edu.gcsc.vrl.sunflow.VGeometry3D2");
+        //this.exportClass("edu.gcsc.vrl.sunflow.VGeometry3D2Type");
 
         // describe the plugin
         setDescription("Raytracing Plugin based on Sunflow");
@@ -75,7 +78,8 @@ public class Configurator extends VPluginConfigurator {
             
             vapi.addComponent(MyClass.class);
             
-            //vapi.addComponent(Shape3DArrayType2.class);
+            vapi.addComponent(VGeometry3D2.class);
+            vapi.addTypeRepresentation(VGeometry3D2Type.class);
 
         }
     }
