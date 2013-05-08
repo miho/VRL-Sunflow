@@ -18,28 +18,24 @@ import javax.media.j3d.Material;
 @ComponentInfo(name="VGeometry3D2", category="Sunflow")
 public class VGeometry3D2 extends VGeometry3D {
  
-    public VGeometry3D() {
-        setAppearance(new VGeometry3DAppearance());
+    public VGeometry3D2() {
+        super();
     }
 
-    public VGeometry3D(VTriangleArray geometry) {
-        setAppearance(new VGeometry3DAppearance());
-        setGeometry(geometry);
+    public VGeometry3D2(VTriangleArray geometry) {
+        super(geometry);
     }
 
-    public VGeometry3D(VTriangleArray geometry,
+    public VGeometry3D2(VTriangleArray geometry,
             Color solidColor,
             Color wireColor,
             float wireThickness,
             boolean lighting) {
 
-        setAppearance(new VGeometry3DAppearance(wireColor,
-                solidColor, wireThickness, lighting));
-
-        this.geometry = geometry;
+        super(geometry, solidColor, wireColor, wireThickness, lighting);
     }
 
-    public VGeometry3D(VTriangleArray geometry,
+    public VGeometry3D2(VTriangleArray geometry,
             Color solidColor,
             Color wireColor,
             float wireThickness,
@@ -47,14 +43,10 @@ public class VGeometry3D2 extends VGeometry3D {
             boolean vertexColoring,
             boolean volumeRendering) {
 
-        setAppearance(new VGeometry3DAppearance(wireColor,
-                solidColor, wireThickness, lighting, vertexColoring,
-                Material.DIFFUSE, volumeRendering));
-
-        this.geometry = geometry;
+        super(geometry, solidColor, wireColor, wireThickness, lighting, vertexColoring, volumeRendering);
     }
 
-    public VGeometry3D(VTriangleArray geometry,
+    public VGeometry3D2(VTriangleArray geometry,
             Color solidColor,
             Color wireColor,
             float wireThickness,
@@ -62,19 +54,15 @@ public class VGeometry3D2 extends VGeometry3D {
             boolean vertexColoring,
             int vertexColoringType,
             boolean volumeRendering) {
-
-        setAppearance(new VGeometry3DAppearance(wireColor,
-                solidColor, wireThickness, lighting, vertexColoring,
-                vertexColoringType, volumeRendering));
-
-        this.geometry = geometry;
+        
+        super(geometry, solidColor, wireColor, wireThickness, lighting, vertexColoring, vertexColoringType, volumeRendering);
     }
     
 
-    public VGeometry3D(VTriangleArray geometry,
+    public VGeometry3D2(VTriangleArray geometry,
             VGeometry3DAppearance appearance) {
-        setGeometry(geometry);
-        setAppearance(appearance);
+        
+        super(geometry, appearance);
     }    
     
 }
