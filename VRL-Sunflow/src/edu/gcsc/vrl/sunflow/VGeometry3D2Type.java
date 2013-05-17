@@ -55,6 +55,10 @@ package edu.gcsc.vrl.sunflow;
 import eu.mihosoft.vrl.annotation.TypeInfo;
 import eu.mihosoft.vrl.reflection.ComponentUtil;
 import eu.mihosoft.vrl.v3d.VTriangleArray;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 /**
  * TypeRepresentation for {@link eu.mihosoft.vrl.v3d.VGeometry3D2}.
@@ -139,6 +143,19 @@ public class VGeometry3D2Type extends Shape3DArrayType {
             geometryValue.setOrientation(getOrientationFromUniverse());
         }
         return geometryValue;
+        
+//        RenderObject obj = new RenderObject(null, null);
+//        return obj;
+    }
+    
+    @Override
+    public Object getValue()
+    {
+        // always set orientation
+        geometryValue.setOrientation(getOrientationFromUniverse());
+        return geometryValue;
+        
+        //return super.getValue();
     }
 
     @Override
@@ -171,4 +188,7 @@ public class VGeometry3D2Type extends Shape3DArrayType {
         
         return !serialization || !paramSerialization;
     }
+    
+    
+  
 }

@@ -35,4 +35,9 @@ public class MyClass implements Serializable {
     public void setString(String string) {
         this.string = string;
     }
+    
+    public void setVGeometry3D2(VGeometry3D2 geo)
+    {
+        
+    }
 }

@@ -449,7 +449,7 @@ public class Sunflow extends javax.swing.JFrame {
             @Override
             public void run() 
             {
-                sun.render(SunflowAPI.DEFAULT_OPTIONS, frm.getImagePanel());
+//                sun.render(SunflowAPI.DEFAULT_OPTIONS, frm.getImagePanel());
             }
             
         }.start();
