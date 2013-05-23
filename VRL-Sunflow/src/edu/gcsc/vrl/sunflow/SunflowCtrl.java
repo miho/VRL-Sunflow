@@ -405,7 +405,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         String sampler      = getComboBoxInput("image.sampler");
         float aaMin         = getFloatInput("image.aa.min");
         float aaMax         = getFloatInput("image.aa.max");
-        int aaSamples       = getIntInput("image.aa.samples");
+        int aaSamples       = getIntegerInput("image.aa.samples");
         float aaContrast    = getFloatInput("image.aa.contrast");
         String filter       = getComboBoxInput("image.filter");
         boolean aaJitter    = getBooleanInput("image.jitter");
@@ -465,7 +465,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             float thinlensShiftY = getFloatInput("thinlens.shift.y");
             float thinlensFocusDistance = getFloatInput("thinlens.focus.distance");
             float thinlensLensRadius = getFloatInput("thinlens.lens.radius");
-            float thinlensLensSides = getIntInput("thinlens.lens.sides");
+            float thinlensLensSides = getIntegerInput("thinlens.lens.sides");
             float thinlensLensRotation = getFloatInput("thinlens.lens.rotation");
             
             setCameraThinlens(cameraName,
@@ -521,7 +521,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             String phongTexture = getTextInput("phong.texture");
             float[] phongSpecularRGB = getRGBInput("phong.specular.rgb");
             float phongPower = getFloatInput("phong.power");
-            int phongSamples = getIntInput("phong.samples");
+            int phongSamples = getIntegerInput("phong.samples");
 
             if (phongTexture.isEmpty())
             {
@@ -539,7 +539,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             float[] ambientBrightRGB = getRGBInput("ambient.bright.RGB");
             String ambientTexture = getTextInput("ambient.texture");
             float[] ambientDarkRGB = getRGBInput("ambient.dark.RGB");
-            int ambientSamples = getIntInput("ambient.samples");
+            int ambientSamples = getIntegerInput("ambient.samples");
             float ambientMaxDist = getFloatInput("ambient.maxdist");
             
             if (ambientTexture.isEmpty())
@@ -592,7 +592,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             float[] wardSpecularColor = getRGBInput("ward.specular.color.RGB");
             float wardRoughnessX = getFloatInput("ward.roughnessX");
             float wardRoughnessY = getFloatInput("ward.roughnessY");
-            int wardSamples = getIntInput("ward.samples");         
+            int wardSamples = getIntegerInput("ward.samples");         
             
             if (wardTexture.isEmpty()) {
                 setShaderWard(shaderName, wardDiffuseColor, wardSpecularColor, wardRoughnessX, wardRoughnessY, wardSamples);
@@ -615,7 +615,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             String uberSpecularTexutre =  getTextInput("uber.specular.texture");
             float uberSpecularBlend = getFloatInput("uber.specular.blend");
             float uberGlossyness = getFloatInput("uber.glossyness");
-            int uberSamples = getIntInput("uber.samples");     
+            int uberSamples = getIntegerInput("uber.samples");     
             setShaderUber(shaderName, uberDiffuseColor, uberDiffuseTexture, uberDiffuseBlend,
                     uberSpecularColor, uberSpecularTexutre, uberSpecularBlend,
                     uberGlossyness, uberSamples);
@@ -753,7 +753,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         if (lightType.equals("mesh"))
         {
             float[] meshRadianceColor = getRGBInput("mesh.radiance.color");
-            int meshSamples = getIntInput("mesh.samples");
+            int meshSamples = getIntegerInput("mesh.samples");
             //createTextInput(panel, "mesh.source", "Mesh Light Source", "");
 
             setLightMesh(lightName, meshRadianceColor, meshSamples);
@@ -770,7 +770,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             float[] sphericalRadianceColor = getRGBInput("spherical.radiance.color");
             Point3 sphericalCenter = getPointInput("spherical.center");
             float sphericalRadius = getFloatInput("spherical.radius");
-            int sphericalSamples = getIntInput("spherical.samples");            
+            int sphericalSamples = getIntegerInput("spherical.samples");            
             
             setLightSpherical(lightName, sphericalRadianceColor, sphericalCenter, sphericalRadius, sphericalSamples);
         }
@@ -789,15 +789,15 @@ public class SunflowCtrl extends javax.swing.JPanel {
             Vector3 iblCenter = getVectorInput("ibl.center");
             Vector3 iblUp = getVectorInput("ibl.up");
             boolean iblFixed = getBooleanInput("ibl.fixed");
-            int iblSamples = getIntInput("ibl.samples");
-            int iblLowSamples = getIntInput("ibl.lowsamples");
+            int iblSamples = getIntegerInput("ibl.samples");
+            int iblLowSamples = getIntegerInput("ibl.lowsamples");
             
             setLightIbl(lightName, iblTexture, iblCenter, iblUp, iblFixed, iblSamples, iblLowSamples);
         }
         else if (lightType.equals("meshlight"))
         {
             float[] meshlightRadiance = getRGBInput("meshlight.radiance");
-            int meshlightSamples = getIntInput("meshlight.samples");    
+            int meshlightSamples = getIntegerInput("meshlight.samples");    
             
             setLightMeshlight(lightName, meshlightRadiance, meshlightSamples);
         }
@@ -807,7 +807,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             Vector3 sunskyEast = getVectorInput("sunsky.east");
             Vector3 sunskySundir = getVectorInput("sunsky.sundir");
             float sunskyTurbidity = getFloatInput("sunsky.turbidity");
-            int sunskySamples = getIntInput("sunsky.samples");
+            int sunskySamples = getIntegerInput("sunsky.samples");
             boolean sunskyGroundExtendsky = getBooleanInput("sunsky.ground.extendsky");
             float[] sunskyGroundColor = getRGBInput("sunsky.ground.color");            
             
@@ -823,7 +823,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
             float[] cornellboxBottomColor = getRGBInput("cornellbox.bottomColor");
             float[] cornellboxBackColor = getRGBInput("cornellbox.backColor");
             float[] cornellboxRadiance = getRGBInput("cornellbox.radiance");
-            int cornellboxSamples = getIntInput("cornellbox.samples");
+            int cornellboxSamples = getIntegerInput("cornellbox.samples");
             
             setLightCornellbox(lightName, cornellboxCorner0, cornellboxCorner1, cornellboxLeftColor, cornellboxRightColor, 
                     cornellboxTopColor, cornellboxBottomColor, cornellboxBackColor, cornellboxRadiance, cornellboxSamples);
@@ -1665,7 +1665,6 @@ public class SunflowCtrl extends javax.swing.JPanel {
         
         dict.put(name, tf);
     }
-    
 
     private void createTextInput(JPanel parent, String name, String caption, String defaultValue)
     {
@@ -1802,13 +1801,16 @@ public class SunflowCtrl extends javax.swing.JPanel {
         dict.put(name, subPanel);        
     } 
     
+    
+    
+    
     private String getComboBoxInput(String name)
     {
         JComboBox cb = (JComboBox) dict.get(name);
         return cb.getSelectedItem().toString();
     }
     
-    private int getIntInput(String name)
+    private int getIntegerInput(String name)
     {
         JTextField tf = (JTextField) dict.get(name);
         return Integer.parseInt(tf.getText());
