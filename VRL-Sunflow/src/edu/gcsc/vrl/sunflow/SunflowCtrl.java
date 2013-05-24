@@ -340,6 +340,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         render();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //<editor-fold defaultstate="collapsed" desc="designer generated variables">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbCameraTypes;
     private javax.swing.JComboBox cbLightTypes;
@@ -366,6 +367,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
     private javax.swing.JPanel tab4;
     private javax.swing.JPanel tab5;
     // End of variables declaration//GEN-END:variables
+    //</editor-fold>
 
 
     
@@ -1560,6 +1562,151 @@ public class SunflowCtrl extends javax.swing.JPanel {
     }
     
     
+    private SunflowSettings getSettings()
+    {
+        SunflowSettings result = new SunflowSettings();
+        
+        // image
+        
+        result.ImageResolutionX = getResolutionInput("image.resolution")[0];
+        result.ImageResolutionY = getResolutionInput("image.resolution")[1];
+        result.ImageSampler = getComboBoxInput("image.sampler");
+        result.ImageAaMin = getFloatInput("image.aa.min");
+        result.ImageAaMax = getFloatInput("image.aa.max");
+        result.ImageAaSamples = getIntegerInput("image.aa.samples");
+        result.ImageAaContrast = getFloatInput("image.aa.contrast");
+        result.ImageFilter = getComboBoxInput("image.filter");
+        result.ImageJitter = getBooleanInput("image.jitter");
+        result.ImageCache = getBooleanInput("image.cache");
+        
+        // background
+        
+        result.BackgroundColor = getRGBInput("background.color");
+        
+        result.ShaderType = getComboBoxInput("shader.type");
+        result.ShaderDiffuseRGB = getRGBInput("diffuse.rgb");
+        result.ShaderDiffuseTexture = getTextInput("diffuse.texture");
+        result.ShaderPhongDiffuseRGB = getRGBInput("phong.diffuse.rgb");
+        result.ShaderPhongTexture = getTextInput("phong.texture");
+        result.ShaderPhongSpecularRGB = getRGBInput("phong.specular.rgb");
+        result.ShaderPhongPower = getFloatInput("phong.power");
+        result.ShaderPhongSamples = getIntegerInput("phong.samples");
+        
+        result.ShaderAmbientBrightRGB = getRGBInput("ambient.bright.RGB");
+        result.ShaderAmbientTexture = getTextInput("ambient.texture");
+        result.ShaderAmbientDarkRGB = getRGBInput("ambient.dark.RGB");
+        result.ShaderAmbientSamples = getIntegerInput("ambient.samples");
+        result.ShaderAmbientMaxDist = getFloatInput("ambient.maxdist");
+        
+        result.ShaderMirrorColorRGB = getRGBInput("mirror.color.RGB");
+
+        result.ShaderGlassEta = getFloatInput("glass.eta");
+        result.ShaderGlassColorRGB = getRGBInput("glass.color.RGB");
+        result.ShaderGlassAbsorptionDistance = getFloatInput("glass.absorption.distance");
+        result.ShaderGlassAbsorptionColorRGB = getRGBInput("glass.absorption.color.RGB");
+
+        result.ShaderShinyDiffuseColorRGB = getRGBInput("shiny.diffuse.color.RGB");
+        result.ShaderShinyTexture = getTextInput("shiny.texture");
+        result.ShaderShinyValue = getFloatInput("shiny.value");
+
+        result.ShaderWardDiffuseColorRGB = getRGBInput("ward.diffuse.color.RGB");
+        result.ShaderWardTexture = getTextInput("ward.texture");
+        result.ShaderWardSpecularColorRGB = getRGBInput("ward.specular.color.RGB");
+        result.ShaderWardRoughnessX = getFloatInput("ward.roughnessX");
+        result.ShaderWardRoughnessY = getFloatInput("ward.roughnessY");
+        result.ShaderWardSamples = getIntegerInput("ward.samples");
+
+        result.ShaderConstantColorRGB = getRGBInput("constant.color.RGB");
+
+        result.ShaderUberDiffuseColorRGB = getRGBInput("uber.diffuse.color.RGB");
+        result.ShaderUberDiffuseTexture = getTextInput("uber.diffuse.texture");
+        result.ShaderUberDiffuseBlend = getFloatInput("uber.diffuse.blend");
+        result.ShaderUberSpecularColorRGB = getRGBInput("uber.specular.color.RGB");
+        result.ShaderUberSpecularTexture = getTextInput("uber.specular.texture");
+        result.ShaderUberSpecularBlend = getFloatInput("uber.specular.blend");
+        result.ShaderUberGlossyness = getFloatInput("uber.glossyness");
+        result.ShaderUberSamples = getIntegerInput("uber.samples");
+
+        // light
+        
+        result.LightType = getComboBoxInput("light.type");
+
+        result.LightMeshRadianceColor = getRGBInput("mesh.radiance.color");
+        result.LightMeshSamples = getIntegerInput("mesh.samples");
+        result.LightMeshSource = getTextInput("mesh.source");
+
+        result.LightPointCenter = getPointInput("point.center");
+        result.LightPointPower = getRGBInput("point.power");
+
+        result.LightSphericalRadianceColor = getRGBInput("spherical.radiance.color");
+        result.LightSphericalCenter = getPointInput("spherical.center");
+        result.LightSphericalRadius = getFloatInput("spherical.radius");
+        result.LightSphericalSamples = getIntegerInput("spherical.samples");
+
+        result.LightDirectionalSource = getPointInput("directional.source");
+        result.LightDirectionalTarget = getPointInput("directional.target");
+        result.LightDirectionalRadius = getFloatInput("directional.radius");
+        result.LightDirectionalRadianceColor = getRGBInput("directional.radiance.color");
+
+        result.LightIblTexture = getTextInput("ibl.texture");
+        result.LightIblCenter = getVectorInput("ibl.center");
+        result.LightIblUp = getVectorInput("ibl.up");
+        result.LightIblFixed = getBooleanInput("ibl.fixed");
+        result.LightIblSamples = getIntegerInput("ibl.samples");
+        result.LightIblLowsamples = getIntegerInput("ibl.lowsamples");
+
+        result.LightMeshlightRadiance = getRGBInput("meshlight.radiance");
+        result.LightMeshlightSamples = getIntegerInput("meshlight.samples");
+
+        result.LightSunskyUp = getVectorInput("sunsky.up");
+        result.LightSunskyEast = getVectorInput("sunsky.east");
+        result.LightSunskySundir = getVectorInput("sunsky.sundir");
+        result.LightSunskyTurbidity = getFloatInput("sunsky.turbidity");
+        result.LightSunskySamples = getIntegerInput("sunsky.samples");
+        result.LightSunskyGroundExtendsky = getBooleanInput("sunsky.ground.extendsky");
+        result.LightSunskyGroundColor = getRGBInput("sunsky.ground.color");
+
+        result.LightCornellboxCorner0 = getPointInput("cornellbox.corner0");
+        result.LightCornellboxCorner1 = getPointInput("cornellbox.corner1");
+        result.LightCornellboxLeftColor = getRGBInput("cornellbox.leftColor");
+        result.LightCornellboxRightColor = getRGBInput("cornellbox.rightColor");
+        result.LightCornellboxTopColor = getRGBInput("cornellbox.topColor");
+        result.LightCornellboxBottomColor = getRGBInput("cornellbox.bottomColor");
+        result.LightCornellboxBackColor = getRGBInput("cornellbox.backColor");
+        result.LightCornellboxRadiance = getRGBInput("cornellbox.radiance");
+        result.LightCornellboxSamples = getIntegerInput("cornellbox.samples");
+
+        // camera
+        
+        result.CameraType = ("camera.type");
+        
+        result.CameraPinholeShutterOpen = getFloatInput("pinhole.shutter.open");
+        result.CameraPinholeShutterClose = getFloatInput("pinhole.shutter.close");
+        result.CameraPinholeFov = getFloatInput("pinhole.fov");
+        result.CameraPinholeAspect = getFloatInput("pinhole.aspect");
+        result.CameraPinholeShiftX = getFloatInput("pinhole.shift.x");
+        result.CameraPinholeShiftY = getFloatInput("pinhole.shift.y");
+
+        result.CameraThinlensShutterOpen = getFloatInput("thinlens.shutter.open");
+        result.CameraThinlensShutterClose = getFloatInput("thinlens.shutter.close");
+        result.CameraThinlensFov = getFloatInput("thinlens.fov");
+        result.CameraThinlensAspect = getFloatInput("thinlens.aspect");
+        result.CameraThinlensShiftX = getFloatInput("thinlens.shift.x");
+        result.CameraThinlensShiftY = getFloatInput("thinlens.shift.y");
+        result.CameraThinlensFocusDistance = getFloatInput("thinlens.focus.distance");
+        result.CameraThinlensLensRadius = getFloatInput("thinlens.lens.radius");
+        result.CameraThinlensLensSides = getIntegerInput("thinlens.lens.sides");
+        result.CameraThinlensLensRotation = getFloatInput("thinlens.lens.rotation");
+
+        result.CameraSphericalShutterOpen = getFloatInput("spherical.shutter.open");
+        result.CameraSphericalShutterClose = getFloatInput("spherical.shutter.close");
+
+        result.CameraFisheyeShutterOpen = getFloatInput("fisheye.shutter.open");
+        result.CameraFisheyeShutterClose = getFloatInput("fisheye.shutter.close");
+        
+        return result;
+    }
+    
     
     // -------------------------------------------------------------------------
     // change panels for different settings (shader, light, camera)
@@ -1908,7 +2055,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         return new Color(rgbArray[0], rgbArray[1], rgbArray[2]);
     }
     
-    private float[] colorToFloatArray(Color color)
+    public static float[] colorToFloatArray(Color color)
     {
         float[] colorArray = new float[3];
         color.getRGBColorComponents(colorArray);

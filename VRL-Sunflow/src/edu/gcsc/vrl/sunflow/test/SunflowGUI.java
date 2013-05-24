@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.gcsc.vrl.sunflow;
+package edu.gcsc.vrl.sunflow.test;
 
+import edu.gcsc.vrl.sunflow.SpringUtilities;
 import eu.mihosoft.vrl.v3d.OBJ2Geometry;
 import eu.mihosoft.vrl.v3d.Shape3DArray;
 import eu.mihosoft.vrl.v3d.VGeometry3D;
@@ -22,8 +23,7 @@ import javax.media.j3d.TriangleArray;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -39,7 +39,7 @@ import org.sunflow.system.ImagePanel;
  *
  * @author ThomasL
  */
-public class SunflowGUI_Control extends JPanel
+public class SunflowGUI extends javax.swing.JFrame 
 {
     SunflowAPI sun = new SunflowAPI();
     
@@ -50,14 +50,13 @@ public class SunflowGUI_Control extends JPanel
     /**
      * Creates new form SunflowGUI
      */
-    //public SunflowGUI_Control(float[] orientation, Shape3DArray shapes) {
-    public SunflowGUI_Control() {
+    public SunflowGUI(float[] orientation, Shape3DArray shapes) {
         initComponents();
         
-//        this.orientation = orientation;
-//        this.shapes = shapes;
+        this.orientation = orientation;
+        this.shapes = shapes;
         
-//        buildGUI();
+        buildGUI();
     }
 
     /**
@@ -114,7 +113,7 @@ public class SunflowGUI_Control extends JPanel
         labelCenter = new javax.swing.JLabel();
         labelDiameter = new javax.swing.JLabel();
 
-//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
         imagePanel1.setLayout(imagePanel1Layout);
@@ -477,8 +476,8 @@ public class SunflowGUI_Control extends JPanel
 
         jTabbedPane1.addTab("Infos", jPanel4);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -504,7 +503,7 @@ public class SunflowGUI_Control extends JPanel
                 .addGap(18, 18, 18))
         );
 
-        //pack();
+        pack();
     }// </editor-fold>                        
 
     // render button clicked
@@ -585,13 +584,8 @@ public class SunflowGUI_Control extends JPanel
                         {
                             Shape3DArray shapes = (Shape3DArray) geo.generateShape3DArray();
 
-                            //SunflowGUI frm = new SunflowGUI(orientation, shapes);
-                            JFrame frame = new JFrame();
-                            SunflowGUI_Control ctrl = new SunflowGUI_Control();
-                            
-                            frame.setPreferredSize(ctrl.getSize());
-                            frame.add(ctrl);
-                            frame.setVisible(true);
+                            SunflowGUI frm = new SunflowGUI(orientation, shapes);
+                            frm.setVisible(true);
                         }
                     }
                 });
@@ -1792,8 +1786,7 @@ public class SunflowGUI_Control extends JPanel
         SpringUtilities.makeCompactGrid(panel, 2, 2, 6, 6, 6, 6);         //rows, cols initX, initY xPad, yPad
         panelCameraSettings.add(panel, BorderLayout.NORTH);
     }
-    
-    
+
     
     private void createIntegerInput(JPanel parent, String name, String caption, int defaultValue)
     {

@@ -51,6 +51,7 @@
  */
 package edu.gcsc.vrl.sunflow;
 
+import edu.gcsc.vrl.sunflow.test.SunflowGUI;
 import eu.mihosoft.vrl.annotation.TypeInfo;
 import eu.mihosoft.vrl.dialogs.SaveImageDialog;
 import eu.mihosoft.vrl.reflection.CustomParamData;

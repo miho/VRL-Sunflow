@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.gcsc.vrl.sunflow;
+package edu.gcsc.vrl.sunflow.test;
 
+import edu.gcsc.vrl.sunflow.test.SunflowGUI;
 import eu.mihosoft.vrl.v3d.Shape3DArray;
 import javax.media.j3d.Shape3D;
 import javax.media.j3d.TriangleArray;

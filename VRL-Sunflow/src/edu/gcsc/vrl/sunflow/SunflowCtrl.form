@@ -290,9 +290,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Camera Types"/>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Camera Types"/>
-              </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbCameraTypes">
               <Properties>
