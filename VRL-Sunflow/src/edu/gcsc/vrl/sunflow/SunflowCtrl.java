@@ -730,6 +730,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         sun.instance(name + ".instance", name);
 */        
 
+/*        
         // plane
         sun.parameter("center", new Point3(0, -3, 0));
         sun.parameter("normal", new Point3(0, 1, 1));
@@ -741,7 +742,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         //sun.parameter("modifiers", modifiers);
         //sun.parameter("transform", transform[0]);
         sun.instance("plane" + ".instance", "plane1");
-        
+*/        
         
         
         // ---------------------------------------------------------------------

@@ -6,7 +6,7 @@ shader {
   refl 0.1
 }
 
-/*
+
 
 object { 
    shader default
@@ -18,11 +18,12 @@ object {
 	}
 	type file-mesh
 	name objectName
-	filename C:\Users\ThomasL\Documents\NetBeansProjects\VRL-Sunflow\VRL-Sunflow\teapot.obj 
+/*	filename C:\Users\ThomasL\Documents\NetBeansProjects\VRL-Sunflow\VRL-Sunflow\teapot.obj  */
+	filename C:\Users\ThomasL\Dropbox\3d-cells\bowfly_visual_lobe\bowfly_visual_lobe_VS4-fluoro03.CNG.obj  	
 	smooth_normals true 
 }
 
-*/
+
 
 
 

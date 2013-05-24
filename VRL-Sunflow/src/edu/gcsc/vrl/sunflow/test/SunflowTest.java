@@ -35,7 +35,8 @@ public class SunflowTest extends SunflowAPI {
         //test.setup_bunny_ibl();
         //test.setup_cornell_box_jensen();
         //test.setup_julia();
-        test.setup_sphereflake();
+        //test.setup_sphereflake();
+        test.setup_obj();
         test.render(DEFAULT_OPTIONS, disp);
     }
      
@@ -52,7 +53,7 @@ public class SunflowTest extends SunflowAPI {
         // you can put the path to your own scene here to use this rendering
         // technique just copy this file to the same directory as your main .sc
         // file, and swap the fileanme in the line below
-        include("C:\\Users\\ThomasL\\Documents\\NetBeansProjects\\VRL-Sunflow\\VRL-Sunflowobj.sc");
+        include("C:\\Users\\ThomasL\\Documents\\NetBeansProjects\\VRL-Sunflow\\VRL-Sunflow\\obj.sc");
 
         // shader override
         parameter("override.shader", "ao_wire");
