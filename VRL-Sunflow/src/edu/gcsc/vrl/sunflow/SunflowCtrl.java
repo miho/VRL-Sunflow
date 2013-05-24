@@ -1562,7 +1562,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
     }
     
     
-    private SunflowSettings getSettings()
+    private SunflowSettings getSunflowSettings()
     {
         SunflowSettings result = new SunflowSettings();
         
@@ -1582,6 +1582,8 @@ public class SunflowCtrl extends javax.swing.JPanel {
         // background
         
         result.BackgroundColor = getRGBInput("background.color");
+  
+        // shader
         
         result.ShaderType = getComboBoxInput("shader.type");
         result.ShaderDiffuseRGB = getRGBInput("diffuse.rgb");
@@ -1641,7 +1643,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         result.LightSphericalRadianceColor = getRGBInput("spherical.radiance.color");
         result.LightSphericalCenter = getPointInput("spherical.center");
         result.LightSphericalRadius = getFloatInput("spherical.radius");
-        result.LightSphericalSamples = getIntegerInput("spherical.samples");
+        result.LightSphericalSamples = getFloatInput("spherical.samples");
 
         result.LightDirectionalSource = getPointInput("directional.source");
         result.LightDirectionalTarget = getPointInput("directional.target");
@@ -1707,6 +1709,148 @@ public class SunflowCtrl extends javax.swing.JPanel {
         return result;
     }
     
+    private void setSunflowSettings(SunflowSettings s)
+    {
+        // image
+        
+        setResolutionInput("image.resolution", s.ImageResolutionX, s.ImageResolutionY);
+        setComboBoxInput("image.sampler", s.ImageSampler);
+        setFloatInput("image.aa.min", s.ImageAaMin);
+        setFloatInput("image.aa.max", s.ImageAaMax);
+        setIntegerInput("image.aa.samples", s.ImageAaSamples);
+        setFloatInput("image.aa.contrast", s.ImageAaContrast);
+        setComboBoxInput("image.filter", s.ImageFilter);
+        setBooleanInput("image.jitter", s.ImageJitter);
+        setBooleanInput("image.cache", s.ImageCache);
+        
+        // background
+        
+        setRGBInput("background.color", s.BackgroundColor);
+  
+        // shader
+        
+        setComboBoxInput("shader.type", s.ShaderType);
+        setRGBInput("diffuse.rgb", s.ShaderDiffuseRGB);
+        setTextInput("diffuse.texture", s.ShaderDiffuseTexture);
+        setRGBInput("phong.diffuse.rgb", s.ShaderPhongDiffuseRGB);
+        setTextInput("phong.texture", s.ShaderPhongTexture);
+        setRGBInput("phong.specular.rgb", s.ShaderPhongSpecularRGB);
+        setFloatInput("phong.power", s.ShaderPhongPower);
+        setIntegerInput("phong.samples", s.ShaderPhongSamples);
+        
+        setRGBInput("ambient.bright.RGB", s.ShaderAmbientBrightRGB);
+        setTextInput("ambient.texture", s.ShaderAmbientTexture);
+        setRGBInput("ambient.dark.RGB", s.ShaderAmbientDarkRGB);
+        setIntegerInput("ambient.samples", s.ShaderAmbientSamples);
+        setFloatInput("ambient.maxdist", s.ShaderAmbientMaxDist);
+        
+        setRGBInput("mirror.color.RGB", s.ShaderMirrorColorRGB);
+
+        setFloatInput("glass.eta", s.ShaderGlassEta);
+        setRGBInput("glass.color.RGB", s.ShaderGlassColorRGB);
+        setFloatInput("glass.absorption.distance", s.ShaderGlassAbsorptionDistance);
+        setRGBInput("glass.absorption.color.RGB", s.ShaderGlassAbsorptionColorRGB);
+
+        setRGBInput("shiny.diffuse.color.RGB", s.ShaderShinyDiffuseColorRGB);
+        setTextInput("shiny.texture", s.ShaderShinyTexture);
+        setFloatInput("shiny.value", s.ShaderShinyValue);
+
+        setRGBInput("ward.diffuse.color.RGB", s.ShaderWardDiffuseColorRGB);
+        setTextInput("ward.texture", s.ShaderWardTexture);
+        setRGBInput("ward.specular.color.RGB", s.ShaderWardSpecularColorRGB);
+        setFloatInput("ward.roughnessX", s.ShaderWardRoughnessX);
+        setFloatInput("ward.roughnessY", s.ShaderWardRoughnessY);
+        setIntegerInput("ward.samples", s.ShaderWardSamples);
+
+        setRGBInput("constant.color.RGB", s.ShaderConstantColorRGB);
+
+        setRGBInput("uber.diffuse.color.RGB", s.ShaderUberDiffuseColorRGB);
+        setTextInput("uber.diffuse.texture", s.ShaderUberDiffuseTexture);
+        setFloatInput("uber.diffuse.blend", s.ShaderUberDiffuseBlend);
+        setRGBInput("uber.specular.color.RGB", s.ShaderUberSpecularColorRGB);
+        setTextInput("uber.specular.texture", s.ShaderUberSpecularTexture);
+        setFloatInput("uber.specular.blend", s.ShaderUberSpecularBlend);
+        setFloatInput("uber.glossyness", s.ShaderUberGlossyness);
+        setIntegerInput("uber.samples", s.ShaderUberSamples);
+        
+        // light
+        
+        setComboBoxInput("light.type", s.LightType);
+
+        setRGBInput("mesh.radiance.color", s.LightMeshRadianceColor);
+        setIntegerInput("mesh.samples", s.LightMeshSamples);
+        setTextInput("mesh.source", s.LightMeshSource);
+
+        setPointInput("point.center", s.LightPointCenter);
+        setRGBInput("point.power", s.LightPointPower);
+
+        setRGBInput("spherical.radiance.color", s.LightSphericalRadianceColor);
+        setPointInput("spherical.center", s.LightSphericalCenter);
+        setFloatInput("spherical.radius", s.LightSphericalRadius);
+        setFloatInput("spherical.samples", s.LightSphericalSamples);
+
+        setPointInput("directional.source", s.LightDirectionalSource);
+        setPointInput("directional.target", s.LightDirectionalTarget);
+        setFloatInput("directional.radius", s.LightDirectionalRadius);
+        setRGBInput("directional.radiance.color", s.LightDirectionalRadianceColor);
+
+        setTextInput("ibl.texture", s.LightIblTexture);
+        setVectorInput("ibl.center", s.LightIblCenter);
+        setVectorInput("ibl.up", s.LightIblUp);
+        setBooleanInput("ibl.fixed", s.LightIblFixed);
+        setIntegerInput("ibl.samples", s.LightIblSamples);
+        setIntegerInput("ibl.lowsamples", s.LightIblLowsamples);
+
+        setRGBInput("meshlight.radiance", s.LightMeshlightRadiance);
+        setIntegerInput("meshlight.samples", s.LightMeshlightSamples);
+
+        setVectorInput("sunsky.up", s.LightSunskyUp);
+        setVectorInput("sunsky.east", s.LightSunskyEast);
+        setVectorInput("sunsky.sundir", s.LightSunskySundir);
+        setFloatInput("sunsky.turbidity", s.LightSunskyTurbidity);
+        setIntegerInput("sunsky.samples", s.LightSunskySamples);
+        setBooleanInput("sunsky.ground.extendsky", s.LightSunskyGroundExtendsky);
+        setRGBInput("sunsky.ground.color", s.LightSunskyGroundColor);
+
+        setPointInput("cornellbox.corner0", s.LightCornellboxCorner0);
+        setPointInput("cornellbox.corner1", s.LightCornellboxCorner1);
+        setRGBInput("cornellbox.leftColor", s.LightCornellboxLeftColor);
+        setRGBInput("cornellbox.rightColor", s.LightCornellboxRightColor);
+        setRGBInput("cornellbox.topColor", s.LightCornellboxTopColor);
+        setRGBInput("cornellbox.bottomColor", s.LightCornellboxBottomColor);
+        setRGBInput("cornellbox.backColor", s.LightCornellboxBackColor);
+        setRGBInput("cornellbox.radiance", s.LightCornellboxRadiance);
+        setIntegerInput("cornellbox.samples", s.LightCornellboxSamples);
+        
+        // camera
+        
+        setComboBoxInput("camera.type", s.CameraType);
+        
+        setFloatInput("pinhole.shutter.open", s.CameraPinholeShutterOpen);
+        setFloatInput("pinhole.shutter.close", s.CameraPinholeShutterClose);
+        setFloatInput("pinhole.fov", s.CameraPinholeFov);
+        setFloatInput("pinhole.aspect", s.CameraPinholeAspect);
+        setFloatInput("pinhole.shift.x", s.CameraPinholeShiftX);
+        setFloatInput("pinhole.shift.y", s.CameraPinholeShiftY);
+
+        setFloatInput("thinlens.shutter.open", s.CameraThinlensShutterOpen);
+        setFloatInput("thinlens.shutter.close", s.CameraThinlensShutterClose);
+        setFloatInput("thinlens.fov", s.CameraThinlensFov);
+        setFloatInput("thinlens.aspect", s.CameraThinlensAspect);
+        setFloatInput("thinlens.shift.x", s.CameraThinlensShiftX);
+        setFloatInput("thinlens.shift.y", s.CameraThinlensShiftY);
+        setFloatInput("thinlens.focus.distance", s.CameraThinlensFocusDistance);
+        setFloatInput("thinlens.lens.radius", s.CameraThinlensLensRadius);
+        setIntegerInput("thinlens.lens.sides", s.CameraThinlensLensSides);
+        setFloatInput("thinlens.lens.rotation", s.CameraThinlensLensRotation);
+
+        setFloatInput("spherical.shutter.open", s.CameraSphericalShutterOpen);
+        setFloatInput("spherical.shutter.close", s.CameraSphericalShutterClose);
+
+        setFloatInput("fisheye.shutter.open", s.CameraFisheyeShutterOpen);
+        setFloatInput("fisheye.shutter.close", s.CameraFisheyeShutterClose);
+                
+    }
     
     // -------------------------------------------------------------------------
     // change panels for different settings (shader, light, camera)
@@ -2041,6 +2185,94 @@ public class SunflowCtrl extends javax.swing.JPanel {
         
         return result;
     } 
+
+    
+    
+    
+    
+    private void setComboBoxInput(String name, String value)
+    {
+        JComboBox cb = (JComboBox) dict.get(name);
+        // TODO: not sure if that works
+        cb.setSelectedItem(value);
+    }
+    
+    private void setIntegerInput(String name, int value)
+    {
+        JTextField tf = (JTextField) dict.get(name);
+        tf.setText(Integer.toString(value));
+    }
+
+    private void setBooleanInput(String name, boolean value)
+    {
+        JCheckBox cb = (JCheckBox) dict.get(name);
+        cb.setSelected(value);
+    }
+    
+    private void setFloatInput(String name, float value)
+    {
+        JTextField tf = (JTextField) dict.get(name);
+        tf.setText(Float.toString(value));
+    }
+    
+    private void setTextInput(String name, String value)
+    {
+        JTextField tf = (JTextField) dict.get(name);
+        tf.setText(value);
+    }
+    
+    private void setRGBInput(String name, float[] value)
+    {
+        JPanel colorPanel = (JPanel) dict.get(name);
+        colorPanel.setBackground(colorFromFloatArray(value));
+    }
+    
+    private void setManualRGBInput(String name, float[] value)
+    {
+        JPanel p = (JPanel) dict.get(name);
+        JTextField tf1 = (JTextField) p.getComponent(0);
+        JTextField tf2 = (JTextField) p.getComponent(1);
+        JTextField tf3 = (JTextField) p.getComponent(2);
+
+        tf1.setText(Float.toString(value[0]));
+        tf2.setText(Float.toString(value[1]));
+        tf3.setText(Float.toString(value[2]));        
+    }    
+    
+    private void setPointInput(String name, Point3 value)
+    {
+        JPanel p = (JPanel) dict.get(name);
+        JTextField tf1 = (JTextField) p.getComponent(0);
+        JTextField tf2 = (JTextField) p.getComponent(1);
+        JTextField tf3 = (JTextField) p.getComponent(2);
+
+        tf1.setText(Float.toString(value.x));
+        tf2.setText(Float.toString(value.y));
+        tf3.setText(Float.toString(value.z));        
+    }    
+
+    private void setVectorInput(String name, Vector3 value)
+    {
+        JPanel p = (JPanel) dict.get(name);
+        JTextField tf1 = (JTextField) p.getComponent(0);
+        JTextField tf2 = (JTextField) p.getComponent(1);
+        JTextField tf3 = (JTextField) p.getComponent(2);
+
+        tf1.setText(Float.toString(value.x));
+        tf2.setText(Float.toString(value.y));
+        tf3.setText(Float.toString(value.z));
+    }       
+
+    private void setResolutionInput(String name, int x, int y)
+    {
+        JPanel p = (JPanel) dict.get(name);
+        JTextField tf1 = (JTextField) p.getComponent(0);
+        JTextField tf2 = (JTextField) p.getComponent(1);
+
+        tf1.setText(Integer.toString(x));
+        tf2.setText(Integer.toString(y));
+    } 
+    
     
     //</editor-fold>
     
