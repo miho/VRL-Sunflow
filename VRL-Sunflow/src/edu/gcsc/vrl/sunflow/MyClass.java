@@ -5,7 +5,12 @@
 package edu.gcsc.vrl.sunflow;
 
 import eu.mihosoft.vrl.annotation.ComponentInfo;
+import eu.mihosoft.vrl.v3d.Node;
+import eu.mihosoft.vrl.v3d.Triangle;
+import eu.mihosoft.vrl.v3d.VTriangleArray;
+import java.awt.Color;
 import java.io.Serializable;
+import javax.vecmath.Point3f;
 
 /**
  *
@@ -36,8 +41,20 @@ public class MyClass implements Serializable {
         this.string = string;
     }
     
-    public void setVGeometry3D2(VGeometry3D2 geo)
+    public VGeometry3D2 simpleGeometry()
     {
-        
+        VTriangleArray result = new VTriangleArray();
+
+        Node n1 = new Node(new Point3f(0f,0f,0f));
+        Node n2 = new Node(new Point3f(10f,0f,0f));
+        Node n3 = new Node(new Point3f(0f,10f,0f));
+        Node n4 = new Node(new Point3f(0f,0f,10f));
+
+        result.addTriangle(new Triangle(1,n1,n2,n3));
+        result.addTriangle(new Triangle(2,n1,n2,n4));
+        result.addTriangle(new Triangle(3,n1,n3,n4));
+        result.addTriangle(new Triangle(4,n2,n3,n4));
+
+        return new VGeometry3D2(result,Color.black,Color.green,1F,false);       
     }
 }

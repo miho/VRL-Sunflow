@@ -53,10 +53,14 @@ public class RenderObjectType extends TypeRepresentationBase {
 
      CustomParamData result = super.getCustomData();
 
-//     MyData data = new MyData();
-//
-//     result.put("MY_KEY", data); // adds data to the CustomParamData object
-
+     if (ctrl != null)
+     {
+        SunflowSettings settings = ctrl.getSunflowSettings();
+        // adds data to the CustomParamData object
+        if (settings != null)
+            result.put("my_settings", settings);                     
+     }
+     
      return result;
  }
 
@@ -67,9 +71,16 @@ public class RenderObjectType extends TypeRepresentationBase {
  */
  @Override
  public void evaluateCustomParamData() {
-//     MyData data = (MyData)super.getCustomData().get("MY_KEY"); // returns the data object from the CustomParamData object
-     
-     // update ui with values from data
+
+     if (ctrl != null)
+     {
+        // returns the data object from the CustomParamData object
+        SunflowSettings settings = (SunflowSettings)super.getCustomData().get("my_settings"); 
+
+        // update ui with values from data
+        if (settings != null)
+            ctrl.setSunflowSettings(settings);
+     }
      
  }    
     

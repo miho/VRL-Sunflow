@@ -835,8 +835,8 @@ public class SunflowCtrl extends javax.swing.JPanel {
         
         // shader
         
-        sun.parameter("depths.diffuse", 0.2f);
-        sun.parameter("depths.reflection", 0.1f);
+        //sun.parameter("depths.diffuse", 0.2f);
+        //sun.parameter("depths.reflection", 0.1f);
         //sun.parameter("depths.refraction", 0);
 //        sun.shader("default", "shiny_diffuse");     // shiny_phong
 
@@ -1266,7 +1266,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
     ////////////////////////////////////////////////////////////////////////////
     
     
-    
+    // contains all input controls with a unique name
     private HashMap<String, Object> dict = new HashMap<String, Object>();
     
     private String[] shaders = new String[] { 
@@ -1339,6 +1339,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         
         // SHADER
 
+        dict.put("shader.type", cbShaderTypes);
         cbShaderTypes.setModel(new DefaultComboBoxModel(shaders));
         cbShaderTypes.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -1423,6 +1424,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         // ---------------------------------------------------------------------
         // LIGHT
         
+        dict.put("light.type", cbLightTypes);
         cbLightTypes.setModel(new DefaultComboBoxModel(lights));
         cbLightTypes.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -1507,6 +1509,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         // ---------------------------------------------------------------------
         // CAMERA
         
+        dict.put("camera.type", cbCameraTypes);
         cbCameraTypes.setModel(new DefaultComboBoxModel(cameras));
         cbCameraTypes.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -1562,7 +1565,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
     }
     
     
-    private SunflowSettings getSunflowSettings()
+    public SunflowSettings getSunflowSettings()
     {
         SunflowSettings result = new SunflowSettings();
         
@@ -1709,7 +1712,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         return result;
     }
     
-    private void setSunflowSettings(SunflowSettings s)
+    public void setSunflowSettings(SunflowSettings s)
     {
         // image
         
