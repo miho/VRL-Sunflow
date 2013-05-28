@@ -6,9 +6,12 @@ package edu.gcsc.vrl.sunflow;
 
 import eu.mihosoft.vrl.annotation.ComponentInfo;
 import eu.mihosoft.vrl.v3d.Node;
+import eu.mihosoft.vrl.v3d.OBJ2Geometry;
 import eu.mihosoft.vrl.v3d.Triangle;
 import eu.mihosoft.vrl.v3d.VTriangleArray;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.vecmath.Point3f;
 
@@ -56,5 +59,18 @@ public class MyClass implements Serializable {
         result.addTriangle(new Triangle(4,n2,n3,n4));
 
         return new VGeometry3D2(result,Color.black,Color.green,1F,false);       
+    }
+    
+    private VGeometry3D2 geom = null;
+    public VGeometry3D2 loadObjFile() throws IOException
+    {
+        if (geom == null)
+        {
+            File f = new File("C:\\Users\\ThomasL\\Dropbox\\3d-cells\\bowfly_visual_lobe\\bowfly_visual_lobe_VS4-fluoro03.CNG.obj");
+            OBJ2Geometry o = new OBJ2Geometry();
+            geom = new VGeometry3D2(o.loadAsVTriangleArray(f));
+        }
+        
+        return geom;
     }
 }

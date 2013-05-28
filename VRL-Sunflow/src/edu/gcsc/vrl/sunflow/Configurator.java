@@ -34,8 +34,8 @@ public class Configurator extends VPluginConfigurator {
         exportPackage("edu.gcsc.vrl.sunflow");
 //        disableAccessControl(true);
         
-        this.exportClass("edu.gcsc.vrl.sunflow.RenderObject");
-        this.exportClass("edu.gcsc.vrl.sunflow.RenderObjectType");
+        //this.exportClass("edu.gcsc.vrl.sunflow.RenderObject");
+        //this.exportClass("edu.gcsc.vrl.sunflow.RenderObjectType");
 
         // describe the plugin
         setDescription("Raytracing Plugin based on Sunflow");

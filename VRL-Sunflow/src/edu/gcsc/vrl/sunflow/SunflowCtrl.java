@@ -22,17 +22,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.text.DefaultCaret;
 import javax.vecmath.Point3f;
 import org.sunflow.SunflowAPI;
 import org.sunflow.math.Matrix4;
 import org.sunflow.math.Point3;
 import org.sunflow.math.Vector3;
+import org.sunflow.system.UI;
+import org.sunflow.system.UI.Module;
+import org.sunflow.system.UI.PrintLevel;
+import org.sunflow.system.UserInterface;
 
 /**
  *
  * @author ThomasL
  */
-public class SunflowCtrl extends javax.swing.JPanel {
+public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
 
     /**
      * Creates new form SunflowCtrl
@@ -75,6 +80,9 @@ public class SunflowCtrl extends javax.swing.JPanel {
         labelDiameter = new javax.swing.JLabel();
         imagePanel1 = new org.sunflow.system.ImagePanel();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taOutput = new javax.swing.JTextArea();
+        jProgressBar1 = new javax.swing.JProgressBar();
 
         javax.swing.GroupLayout panelImageSettingsLayout = new javax.swing.GroupLayout(panelImageSettings);
         panelImageSettings.setLayout(panelImageSettingsLayout);
@@ -84,7 +92,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         );
         panelImageSettingsLayout.setVerticalGroup(
             panelImageSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 319, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Image", panelImageSettings);
@@ -97,7 +105,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         );
         panelBackgroundSettingsLayout.setVerticalGroup(
             panelBackgroundSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 319, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Background", panelBackgroundSettings);
@@ -110,7 +118,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         );
         panelShaderSettingsLayout.setVerticalGroup(
             panelShaderSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 271, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Shader Types");
@@ -156,7 +164,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         );
         panelLightSettingsLayout.setVerticalGroup(
             panelLightSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 271, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout tab4Layout = new javax.swing.GroupLayout(tab4);
@@ -198,7 +206,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         );
         panelCameraSettingsLayout.setVerticalGroup(
             panelCameraSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 271, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout tab5Layout = new javax.swing.GroupLayout(tab5);
@@ -227,8 +235,6 @@ public class SunflowCtrl extends javax.swing.JPanel {
                 .addComponent(panelCameraSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jLabel3.getAccessibleContext().setAccessibleName("Camera Types");
 
         jTabbedPane1.addTab("Camera", tab5);
 
@@ -281,7 +287,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
                 .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(labelDiameter))
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Infos", panelInfos);
@@ -304,34 +310,51 @@ public class SunflowCtrl extends javax.swing.JPanel {
             }
         });
 
+        taOutput.setColumns(20);
+        taOutput.setFont(new java.awt.Font("Courier New", 0, 11)); // NOI18N
+        taOutput.setRows(5);
+        jScrollPane1.setViewportView(taOutput);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(83, 83, 83)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -353,6 +376,8 @@ public class SunflowCtrl extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelBounds;
     private javax.swing.JLabel labelCenter;
@@ -363,6 +388,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
     private javax.swing.JPanel panelInfos;
     private javax.swing.JPanel panelLightSettings;
     private javax.swing.JPanel panelShaderSettings;
+    private javax.swing.JTextArea taOutput;
     private javax.swing.JPanel tab3;
     private javax.swing.JPanel tab4;
     private javax.swing.JPanel tab5;
@@ -396,7 +422,17 @@ public class SunflowCtrl extends javax.swing.JPanel {
 
     private void render()
     {
+        // set this as sunflow user interface for messaging and progress notifications
+        UI.set(this);
+        // reset text area
+        taOutput.setText("");
+        // auto scroll text area
+        DefaultCaret caret = (DefaultCaret)taOutput.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
+        
         sun.reset();
+        
         
         
         
@@ -870,7 +906,7 @@ public class SunflowCtrl extends javax.swing.JPanel {
         
         
        
-        
+
         
         
         
@@ -888,6 +924,8 @@ public class SunflowCtrl extends javax.swing.JPanel {
             public void run() 
             {
                 sun.render(SunflowAPI.DEFAULT_OPTIONS, imagePanel1);
+                
+                
                 
                 
                 // INFOS
@@ -2295,6 +2333,35 @@ public class SunflowCtrl extends javax.swing.JPanel {
         float[] colorArray = new float[3];
         color.getRGBColorComponents(colorArray);
         return colorArray;
+    }
+
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Sunflow User Interface Implementations">
+    // needed for progress report to UI
+    
+    @Override
+    public void print(Module m, PrintLevel level, String s) {
+        String msg = UI.formatOutput(m, level, s);
+        taOutput.append(msg + "\n");
+        //taOutput.setCaretPosition(taOutput.getText().length());
+    }
+
+    @Override
+    public void taskStart(String s, int min, int max) {
+        jProgressBar1.setMinimum(min);
+        jProgressBar1.setMaximum(max);
+        jProgressBar1.setValue(0);
+    }
+
+    @Override
+    public void taskUpdate(int current) {
+        jProgressBar1.setValue(current);
+    }
+
+    @Override
+    public void taskStop() {
+
     }
 
     //</editor-fold>
