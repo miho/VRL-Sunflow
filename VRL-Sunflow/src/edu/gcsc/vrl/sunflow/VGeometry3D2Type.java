@@ -116,11 +116,16 @@ public class VGeometry3D2Type extends Shape3DArrayType {
     public VGeometry3D2Type() {
         setValueName("");
         setHideConnector(false);
+        // Thomas Licht: trouble with validation?
+        setNoValidation(true);
     }
 
     @Override
     public void setViewValue(Object o) {
+        System.out.println("VGeometry3D2Type.setViewValue");
+        if (o==null) System.out.println("  input is null");
 
+        
         if (o instanceof VGeometry3D2) {
             VGeometry3D2 geometry = (VGeometry3D2) o;
             geometryValue = geometry;
@@ -129,6 +134,26 @@ public class VGeometry3D2Type extends Shape3DArrayType {
         } else {
             super.setViewValue(null);
         }
+    }
+    
+    @Override
+    public void setValue(Object o)
+    {
+        System.out.println("VGeometry3D2Type.setValue");
+        if (o==null) System.out.println("  input is null");
+        
+        if (o != null) 
+        {
+            super.setValue(o);
+        }
+//        if (o instanceof VGeometry3D2) {
+//            VGeometry3D2 geometry = (VGeometry3D2) o;
+//            geometryValue = geometry;
+//            setOrientationFromValues(geometry.getOrientation());
+//            super.setValue(geometry.generateShape3DArray());
+//        } else {
+//            super.setValue(null);
+//        }
     }
 
     @Override
@@ -139,23 +164,25 @@ public class VGeometry3D2Type extends Shape3DArrayType {
 
     @Override
     public Object getViewValue() {
+        System.out.println("VGeometry3D2Type.getViewValue");
+        if (geometryValue==null) System.out.println("  result is null");
+        
         if (geometryValue != null && isInput()) {
             geometryValue.setOrientation(getOrientationFromUniverse());
         }
-        return geometryValue;
-        
-//        RenderObject obj = new RenderObject(null, null);
-//        return obj;
+        return (Object)geometryValue;
     }
     
     @Override
     public Object getValue()
     {
+        System.out.println("VGeometry3D2Type.getValue");
+        if (geometryValue==null) System.out.println("  result is null");
+        
+//        return super.getValue();
         // always set orientation
         geometryValue.setOrientation(getOrientationFromUniverse());
-        return geometryValue;
-        
-        //return super.getValue();
+        return (Object)geometryValue;
     }
 
     @Override

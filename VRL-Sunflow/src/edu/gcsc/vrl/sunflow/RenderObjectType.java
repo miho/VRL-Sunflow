@@ -5,6 +5,7 @@ import eu.mihosoft.vrl.reflection.CustomParamData;
 import eu.mihosoft.vrl.reflection.TypeRepresentationBase;
 import javax.swing.JButton;
 
+// never set output to false, otherwise this type representation is not used (no gui will be shown)
 @TypeInfo(type = RenderObject.class, input = true, output = true, style = "default")
 public class RenderObjectType extends TypeRepresentationBase {
 
@@ -27,13 +28,52 @@ public class RenderObjectType extends TypeRepresentationBase {
     
     @Override
     public void setViewValue(Object o) {
-        this.renderObject = (RenderObject)o;
-        ctrl.setRenderObject(renderObject);
+        System.out.println("RenderObjectType.setViewValue");
+        if (o==null) {
+            System.out.println("  input is null");
+        }
+        
+        if (o != null)
+        {
+            this.renderObject = (RenderObject)o;
+            ctrl.setRenderObject(renderObject);
+        }
     }
 
     @Override
     public Object getViewValue() {
+        System.out.println("RenderObjectType.getViewValue");
+        if (renderObject==null) {
+            System.out.println("  result is null");
+        }
+        
         return this.renderObject;
+    }
+    
+    @Override
+    public void setValue(Object o)
+    {
+        System.out.println("RenderObjectType.setValue");
+        if (o==null) {
+            System.out.println("  input is null");
+        }
+        
+        if (o != null)
+        {
+            this.renderObject = (RenderObject)o;
+            ctrl.setRenderObject(renderObject);
+        }
+    }
+    
+    @Override
+    public Object getValue()
+    {
+        System.out.println("RenderObjectType.getValue");
+        if (renderObject==null) {
+            System.out.println("  result is null");
+        }
+        
+        return this.renderObject;  
     }
     
     public RenderObject getRenderObject()

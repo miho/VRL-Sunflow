@@ -36,7 +36,7 @@ public class SunflowTest extends SunflowAPI {
         //test.setup_cornell_box_jensen();
         //test.setup_julia();
         //test.setup_sphereflake();
-        test.setup_obj();
+        //test.setup_obj();
         test.render(DEFAULT_OPTIONS, disp);
     }
      

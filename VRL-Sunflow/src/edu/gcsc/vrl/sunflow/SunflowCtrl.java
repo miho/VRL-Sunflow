@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.HashMap;
 import javax.media.j3d.Shape3D;
 import javax.media.j3d.TriangleArray;
@@ -18,7 +19,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -83,6 +86,8 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         jScrollPane1 = new javax.swing.JScrollPane();
         taOutput = new javax.swing.JTextArea();
         jProgressBar1 = new javax.swing.JProgressBar();
+        btnSaveImage = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         javax.swing.GroupLayout panelImageSettingsLayout = new javax.swing.GroupLayout(panelImageSettings);
         panelImageSettings.setLayout(panelImageSettingsLayout);
@@ -300,7 +305,7 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 458, Short.MAX_VALUE)
         );
 
         jButton1.setText("render");
@@ -315,6 +320,20 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         taOutput.setRows(5);
         jScrollPane1.setViewportView(taOutput);
 
+        btnSaveImage.setText("save");
+        btnSaveImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveImageActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setText("cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,38 +342,42 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(83, 83, 83)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(1, 1, 1)
+                        .addComponent(btnCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
                 .addGap(18, 18, 18)
-                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaveImage, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btnCancel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSaveImage)
+                .addGap(4, 4, 4))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -363,8 +386,40 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         render();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnSaveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveImageActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setDialogTitle("Save rendered image");
+        int res = fileChooser.showSaveDialog(this);
+        if (res == JFileChooser.APPROVE_OPTION) 
+        {
+            File file = fileChooser.getSelectedFile();
+            if (file.exists()) {
+                int res2 = JOptionPane.showConfirmDialog(this, "File already exists. Do you wish to override?");
+                if (res2 == JOptionPane.NO_OPTION) {
+                    return;
+                }
+            }
+            try {
+                imagePanel1.save(file.getAbsolutePath());
+                JOptionPane.showMessageDialog(this, "Image " + file.getName() + " was saved successfully.", "File save", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "File save error", JOptionPane.ERROR_MESSAGE);
+            }
+        }      
+        
+    }//GEN-LAST:event_btnSaveImageActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        UI.taskCancel();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     //<editor-fold defaultstate="collapsed" desc="designer generated variables">
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSaveImage;
     private javax.swing.JComboBox cbCameraTypes;
     private javax.swing.JComboBox cbLightTypes;
     private javax.swing.JComboBox cbShaderTypes;
@@ -925,9 +980,6 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
             {
                 sun.render(SunflowAPI.DEFAULT_OPTIONS, imagePanel1);
                 
-                
-                
-                
                 // INFOS
                 org.sunflow.math.BoundingBox bb = sun.getBounds();
                 labelBounds.setText(bb.toString());
@@ -1010,7 +1062,10 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
             boolean aaJitter, boolean aaCache) 
     {
         sun.parameter("resolutionX", resX);
-        sun.parameter("resolutionY", resY);        
+        sun.parameter("resolutionY", (int)(resX / 1.77f));
+        //sun.parameter("resolutionY", resY);
+        
+        
         // SAMPLER (package org.sunflow.core.renderer.*)
         // =======
         // bucket      BucketRenderer
@@ -1034,6 +1089,11 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         // lanczos 
         // bspline 
         sun.parameter("filter", filter);
+
+        sun.parameter("depths.diffuse", 2);
+        sun.parameter("depths.reflection", 2);
+        sun.parameter("depths.refraction", 2);        
+        
         sun.parameter("aa.jitter", aaJitter);
         sun.parameter("aa.cache", aaCache);
         sun.options(SunflowAPI.DEFAULT_OPTIONS);
@@ -1395,7 +1455,7 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         }
         
         panel = shaderPanels.get("diffuse");
-        createRGBInput(panel, "diffuse.rgb", "RGB", colorToFloatArray(Color.WHITE));
+        createRGBInput(panel, "diffuse.rgb", "RGB", colorToFloatArray(new Color(0x6699FF)));
         createTextInput(panel, "diffuse.texture", "Texture", "");
         SpringUtilities.makeCompactGrid(panel, 2, 2, 6, 6, 6, 6);         //rows, cols initX, initY xPad, yPad
         panelShaderSettings.add(panel, BorderLayout.NORTH);
@@ -1464,6 +1524,7 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         
         dict.put("light.type", cbLightTypes);
         cbLightTypes.setModel(new DefaultComboBoxModel(lights));
+        cbLightTypes.setSelectedItem("sunsky");
         cbLightTypes.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1527,7 +1588,7 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         createFloatInput(panel, "sunsky.turbidity", "turbidity", 4f);
         createIntegerInput(panel, "sunsky.samples", "samples", 64);
         createBooleanInput(panel, "sunsky.ground.extendsky", "ground.extendsky", false);
-        createRGBInput(panel, "sunsky.ground.color", "ground.color", colorToFloatArray(Color.WHITE));
+        createRGBInput(panel, "sunsky.ground.color", "ground.color", colorToFloatArray(new Color(0x666666)));
         SpringUtilities.makeCompactGrid(panel, 7, 2, 6, 6, 6, 6);         //rows, cols initX, initY xPad, yPad 
         
         panel = lightPanels.get("cornellbox");
