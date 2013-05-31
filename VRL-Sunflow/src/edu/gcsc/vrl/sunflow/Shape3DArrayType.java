@@ -149,23 +149,23 @@ public class Shape3DArrayType extends TypeRepresentationBase {
             // -------------------------
             // ThomasL
             // add Button for rendering image with sunflow
-            JButton button = new JButton("render");
-            button.setMaximumSize(new Dimension(50, button.getMinimumSize().height));
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) 
-                {
-                    // Places the values of this transform into the double precision array of length 16. The first four elements of the array will contain the top row of the transform matrix, etc.
-                    // Transform Matrix 4x4
-                    float[] orientation = getOrientationFromUniverseF();
-                    System.out.println(Arrays.toString(orientation));
-                    
-                    SunflowGUI sun = new SunflowGUI(orientation, shapes);
-                    sun.setVisible(true);
-                    //sun.render();
-                }
-            });
-            this.add(button);            
+//            JButton button = new JButton("render");
+//            button.setMaximumSize(new Dimension(50, button.getMinimumSize().height));
+//            button.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) 
+//                {
+//                    // Places the values of this transform into the double precision array of length 16. The first four elements of the array will contain the top row of the transform matrix, etc.
+//                    // Transform Matrix 4x4
+//                    float[] orientation = getOrientationFromUniverseF();
+//                    System.out.println(Arrays.toString(orientation));
+//                    
+//                    SunflowGUI sun = new SunflowGUI(orientation, shapes);
+//                    sun.setVisible(true);
+//                    //sun.render();
+//                }
+//            });
+//            this.add(button);            
             // -------------------------
             
         } else {
@@ -414,6 +414,19 @@ public class Shape3DArrayType extends TypeRepresentationBase {
                 }
             }
         }
+    }
+    
+    // Thomas Licht
+    @Override
+    public void setValue(Object o)
+    {
+        // here comes an Shape3DArray object
+        if (o != null)
+        {
+            // remember Shape3DArray for rendering with sunflow
+            this.shapes = (Shape3DArray) o;
+        }
+        super.setValue(o);
     }
 
     @Override

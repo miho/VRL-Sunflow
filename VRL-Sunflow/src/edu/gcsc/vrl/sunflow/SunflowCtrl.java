@@ -48,6 +48,9 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
     public SunflowCtrl() {
         initComponents();
         buildGUI();
+        
+        btnRender.setEnabled(true);
+        btnCancel.setEnabled(false);        
     }
 
     /**
@@ -82,7 +85,7 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         labelCenter = new javax.swing.JLabel();
         labelDiameter = new javax.swing.JLabel();
         imagePanel1 = new org.sunflow.system.ImagePanel();
-        jButton1 = new javax.swing.JButton();
+        btnRender = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         taOutput = new javax.swing.JTextArea();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -308,10 +311,10 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
             .addGap(0, 458, Short.MAX_VALUE)
         );
 
-        jButton1.setText("render");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRender.setText("render");
+        btnRender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRenderActionPerformed(evt);
             }
         });
 
@@ -346,7 +349,7 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnRender)
                         .addGap(1, 1, 1)
                         .addComponent(btnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -363,13 +366,17 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(btnCancel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRender)
+                            .addComponent(btnCancel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -381,10 +388,12 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenderActionPerformed
         // TODO add your handling code here:
+        btnRender.setEnabled(false);
+        btnCancel.setEnabled(true);
         render();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRenderActionPerformed
 
     private void btnSaveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveImageActionPerformed
         // TODO add your handling code here:
@@ -414,17 +423,19 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         UI.taskCancel();
+        btnRender.setEnabled(true);
+        btnCancel.setEnabled(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="designer generated variables">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnRender;
     private javax.swing.JButton btnSaveImage;
     private javax.swing.JComboBox cbCameraTypes;
     private javax.swing.JComboBox cbLightTypes;
     private javax.swing.JComboBox cbShaderTypes;
     private org.sunflow.system.ImagePanel imagePanel1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -487,7 +498,6 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
 
         
         sun.reset();
-        
         
         
         
@@ -2400,6 +2410,13 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
 
     //<editor-fold defaultstate="collapsed" desc="Sunflow User Interface Implementations">
     // needed for progress report to UI
+
+    
+    private int min;
+    private int max;
+    private float invP;
+    private String task;
+    private int lastP;    
     
     @Override
     public void print(Module m, PrintLevel level, String s) {
@@ -2410,19 +2427,37 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
 
     @Override
     public void taskStart(String s, int min, int max) {
+        task = s;
+        this.min = min;
+        this.max = max;
+        lastP = -1;
+        invP = 100.0f / (max - min);
+        
+        jProgressBar1.setStringPainted(true);
         jProgressBar1.setMinimum(min);
         jProgressBar1.setMaximum(max);
         jProgressBar1.setValue(0);
+        
+        
     }
 
     @Override
     public void taskUpdate(int current) {
         jProgressBar1.setValue(current);
+        
+        int p = (min == max) ? 0 : (int) ((current - min) * invP);
+        if (p != lastP)
+        {
+            jProgressBar1.setString(Integer.toString(p) + "%");
+            lastP = p;
+            //System.err.print(task + " [" + (lastP = p) + "%]\r");        
+        }
     }
 
     @Override
     public void taskStop() {
-
+        btnRender.setEnabled(true);
+        btnCancel.setEnabled(false);
     }
 
     //</editor-fold>

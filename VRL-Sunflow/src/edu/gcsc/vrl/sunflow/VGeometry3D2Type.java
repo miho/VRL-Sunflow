@@ -139,27 +139,30 @@ public class VGeometry3D2Type extends Shape3DArrayType {
     @Override
     public void setValue(Object o)
     {
-        System.out.println("VGeometry3D2Type.setValue");
+        // here comes a VGeometry3D2 Object
+        System.out.println("VGeometry3D2Type.setValue ID:" + this.toString());
         if (o==null) System.out.println("  input is null");
         
-        if (o != null) 
-        {
-            super.setValue(o);
-        }
-//        if (o instanceof VGeometry3D2) {
-//            VGeometry3D2 geometry = (VGeometry3D2) o;
-//            geometryValue = geometry;
-//            setOrientationFromValues(geometry.getOrientation());
-//            super.setValue(geometry.generateShape3DArray());
-//        } else {
-//            super.setValue(null);
+//        if (o != null) 
+//        {
+//            super.setValue(o);
 //        }
+        if (o instanceof VGeometry3D2) {
+            VGeometry3D2 geometry = (VGeometry3D2) o;
+            geometryValue = geometry;
+            setOrientationFromValues(geometry.getOrientation());
+            super.setValue(geometry.generateShape3DArray());
+        } else {
+            super.setValue(null);
+        }
     }
 
     @Override
     public void emptyView() {
-        super.emptyView();
-        geometryValue = null;
+        // Thomas Licht: why is this called between setValue and getValue call from connected component?
+        //               sets geometryValue back to null, getValue will then give back a null pointer..
+//        super.emptyView();
+//        geometryValue = null;
     }
 
     @Override
@@ -171,18 +174,22 @@ public class VGeometry3D2Type extends Shape3DArrayType {
             geometryValue.setOrientation(getOrientationFromUniverse());
         }
         return (Object)geometryValue;
+        
+//        return super.getViewValue();
     }
     
     @Override
     public Object getValue()
     {
-        System.out.println("VGeometry3D2Type.getValue");
+        System.out.println("VGeometry3D2Type.getValue ID:" + this.toString());
         if (geometryValue==null) System.out.println("  result is null");
         
-//        return super.getValue();
         // always set orientation
         geometryValue.setOrientation(getOrientationFromUniverse());
         return (Object)geometryValue;
+        
+////////        return super.getValue();
+        
     }
 
     @Override
