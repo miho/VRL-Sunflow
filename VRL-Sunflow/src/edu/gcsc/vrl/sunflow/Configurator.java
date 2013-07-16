@@ -4,7 +4,6 @@
  */
 package edu.gcsc.vrl.sunflow;
 
-import eu.mihosoft.vrl.io.IOUtil;
 import eu.mihosoft.vrl.io.VJarUtil;
 import eu.mihosoft.vrl.io.VersionInfo;
 import eu.mihosoft.vrl.lang.visual.CompletionUtil;
@@ -12,17 +11,9 @@ import eu.mihosoft.vrl.system.InitPluginAPI;
 import eu.mihosoft.vrl.system.PluginAPI;
 import eu.mihosoft.vrl.system.PluginDependency;
 import eu.mihosoft.vrl.system.PluginIdentifier;
-import eu.mihosoft.vrl.system.ProjectTemplate;
 import eu.mihosoft.vrl.system.VPluginAPI;
 import eu.mihosoft.vrl.system.VPluginConfigurator;
-import eu.mihosoft.vrl.system.VRLPlugin;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -42,6 +33,9 @@ public class Configurator extends VPluginConfigurator {
         // 
         exportPackage("edu.gcsc.vrl.sunflow");
 //        disableAccessControl(true);
+        
+        this.exportClass("edu.gcsc.vrl.sunflow.RenderObject");
+        this.exportClass("edu.gcsc.vrl.sunflow.RenderObjectType");
 
         // describe the plugin
         setDescription("Raytracing Plugin based on Sunflow");
@@ -82,8 +76,12 @@ public class Configurator extends VPluginConfigurator {
             // vapi.addComponent(MyComponent.class);
             // vapi.addTypeRepresentation(MyType.class);
             
-            vapi.addComponent(MyClass.class);
+            vapi.addTypeRepresentation(VGeometry3D2Type.class);
+            vapi.addTypeRepresentation(RenderObjectType.class);
 
+            vapi.addComponent(MyClass.class);
+            vapi.addComponent(SunflowComponent.class);
+            
         }
     }
 
