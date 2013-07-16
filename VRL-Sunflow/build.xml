@@ -87,7 +87,6 @@
             <fileset dir="dist">
                 <include name="**/*.jar"/>
                 <exclude name="**/VRL.jar"/>
-                <exclude name="**/VRL-*.jar"/>
             </fileset>
             <patternset>
                 <exclude name="META-INF/**"/>
