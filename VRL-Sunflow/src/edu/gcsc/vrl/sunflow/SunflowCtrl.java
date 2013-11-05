@@ -995,6 +995,9 @@ public class SunflowCtrl extends javax.swing.JPanel implements UserInterface {
                 labelBounds.setText(bb.toString());
                 labelCenter.setText(bb.getCenter().toString());
                 labelDiameter.setText(Float.toString(bb.getExtents().length()));
+                
+                btnRender.setEnabled(true);
+                btnCancel.setEnabled(false);                
             }
             
         }.start();            

@@ -50,10 +50,11 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package edu.gcsc.vrl.sunflow;
+package edu.gcsc.vrl.sunflow.test;
 
 import eu.mihosoft.vrl.annotation.TypeInfo;
 import eu.mihosoft.vrl.reflection.ComponentUtil;
+import eu.mihosoft.vrl.types.Shape3DArrayType;
 import eu.mihosoft.vrl.v3d.VTriangleArray;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -136,26 +137,26 @@ public class VGeometry3D2Type extends Shape3DArrayType {
         }
     }
     
-    @Override
-    public void setValue(Object o)
-    {
-        // here comes a VGeometry3D2 Object
-        System.out.println("VGeometry3D2Type.setValue ID:" + this.toString());
-        if (o==null) System.out.println("  input is null");
-        
-//        if (o != null) 
-//        {
-//            super.setValue(o);
+//    @Override
+//    public void setValue(Object o)
+//    {
+//        // here comes a VGeometry3D2 Object
+//        System.out.println("VGeometry3D2Type.setValue ID:" + this.toString());
+//        if (o==null) System.out.println("  input is null");
+//        
+////        if (o != null) 
+////        {
+////            super.setValue(o);
+////        }
+//        if (o instanceof VGeometry3D2) {
+//            VGeometry3D2 geometry = (VGeometry3D2) o;
+//            geometryValue = geometry;
+//            setOrientationFromValues(geometry.getOrientation());
+//            super.setValue(geometry.generateShape3DArray());
+//        } else {
+//            super.setValue(null);
 //        }
-        if (o instanceof VGeometry3D2) {
-            VGeometry3D2 geometry = (VGeometry3D2) o;
-            geometryValue = geometry;
-            setOrientationFromValues(geometry.getOrientation());
-            super.setValue(geometry.generateShape3DArray());
-        } else {
-            super.setValue(null);
-        }
-    }
+//    }
 
     @Override
     public void emptyView() {

@@ -98,7 +98,13 @@ public class RenderObjectType extends TypeRepresentationBase {
         SunflowSettings settings = ctrl.getSunflowSettings();
         // adds data to the CustomParamData object
         if (settings != null)
+        {
+            if (result.containsKey("my_settings"))
+            {
+                result.remove("my_settings");                
+            }
             result.put("my_settings", settings);                     
+        }
      }
      
      return result;

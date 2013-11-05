@@ -4,10 +4,12 @@
  */
 package edu.gcsc.vrl.sunflow;
 
+import edu.gcsc.vrl.sunflow.test.VGeometry3D2;
 import eu.mihosoft.vrl.annotation.ComponentInfo;
 import eu.mihosoft.vrl.v3d.Node;
 import eu.mihosoft.vrl.v3d.OBJ2Geometry;
 import eu.mihosoft.vrl.v3d.Triangle;
+import eu.mihosoft.vrl.v3d.VGeometry3D;
 import eu.mihosoft.vrl.v3d.VTriangleArray;
 import java.awt.Color;
 import java.io.File;
@@ -46,7 +48,24 @@ public class MyClass implements Serializable {
 //        this.string = string;
 //    }
     
-//    public VGeometry3D2 simpleGeometry()
+    public VGeometry3D simpleGeometry()
+    {
+        VTriangleArray result = new VTriangleArray();
+
+        Node n1 = new Node(new Point3f(0f,0f,0f));
+        Node n2 = new Node(new Point3f(10f,0f,0f));
+        Node n3 = new Node(new Point3f(0f,10f,0f));
+        Node n4 = new Node(new Point3f(0f,0f,10f));
+
+        result.addTriangle(new Triangle(1,n1,n2,n3));
+        result.addTriangle(new Triangle(2,n1,n2,n4));
+        result.addTriangle(new Triangle(3,n1,n3,n4));
+        result.addTriangle(new Triangle(4,n2,n3,n4));
+
+        return new VGeometry3D(result,Color.black,Color.green,1F,false);       
+    }
+
+//    public VGeometry3D2 simpleGeometry2()
 //    {
 //        VTriangleArray result = new VTriangleArray();
 //
@@ -62,9 +81,10 @@ public class MyClass implements Serializable {
 //
 //        return new VGeometry3D2(result,Color.black,Color.green,1F,false);       
 //    }
+        
     
-    private VGeometry3D2 geom = null;
-    public VGeometry3D2 loadObjFile() throws IOException
+    private VGeometry3D geom = null;
+    public VGeometry3D loadObjFile() throws IOException
     {
         if (geom == null)
         {
@@ -73,7 +93,7 @@ public class MyClass implements Serializable {
             //File f = new File("C:\\Users\\ThomasL\\Dropbox\\3d-cells\\mouse_retina_simple\\mouse_retina_simple_cell-101-trace.CNG.obj");
             //File f = new File("C:\\Users\\ThomasL\\Dropbox\\3d-cells\\rat_hippocampus_crablike\\rat_hippocampus_crablike_CA1-W-P15-2.CNG.obj");
             OBJ2Geometry o = new OBJ2Geometry();
-            geom = new VGeometry3D2(o.loadAsVTriangleArray(f));
+            geom = new VGeometry3D(o.loadAsVTriangleArray(f));
         }
         
         return geom;
