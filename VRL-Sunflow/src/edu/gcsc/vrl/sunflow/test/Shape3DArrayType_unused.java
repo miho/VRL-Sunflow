@@ -449,10 +449,10 @@ public class Shape3DArrayType_unused extends TypeRepresentationBase {
                             shapeParents[i] = null;
                         }
                     }
-                    if (getCanvas() != null) {
-                        getCanvas().contentChanged();
-                        getCanvas().postRenderTask();
-                    }
+//                    if (getCanvas() != null) {
+//                        getCanvas().contentChanged();
+//                        getCanvas().postRenderTask();
+//                    }
                 }
             }
         }
