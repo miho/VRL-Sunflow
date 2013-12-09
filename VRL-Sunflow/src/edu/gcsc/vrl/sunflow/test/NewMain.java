@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.gcsc.vrl.sunflow;
+package edu.gcsc.vrl.sunflow.test;
 
+import edu.gcsc.vrl.sunflow.SunflowCtrl;
 import javax.swing.JFrame;
 
 /**

@@ -4,6 +4,7 @@
  */
 package edu.gcsc.vrl.sunflow;
 
+import edu.gcsc.vrl.sunflow.test.VGeometry3D2Type;
 import eu.mihosoft.vrl.io.VJarUtil;
 import eu.mihosoft.vrl.io.VersionInfo;
 import eu.mihosoft.vrl.lang.visual.CompletionUtil;
@@ -76,7 +77,6 @@ public class Configurator extends VPluginConfigurator {
             // vapi.addComponent(MyComponent.class);
             // vapi.addTypeRepresentation(MyType.class);
             
-            vapi.addTypeRepresentation(VGeometry3D2Type.class);
             vapi.addTypeRepresentation(RenderObjectType.class);
 
             vapi.addComponent(MyClass.class);

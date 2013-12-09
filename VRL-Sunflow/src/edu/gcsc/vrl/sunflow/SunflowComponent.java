@@ -9,6 +9,7 @@ import eu.mihosoft.vrl.annotation.MethodInfo;
 import eu.mihosoft.vrl.annotation.ParamInfo;
 import eu.mihosoft.vrl.reflection.TypeRepresentationBase;
 import eu.mihosoft.vrl.v3d.Shape3DArray;
+import eu.mihosoft.vrl.v3d.VGeometry3D;
 import java.awt.Button;
 import java.io.Serializable;
 import javax.swing.JButton;
@@ -20,8 +21,8 @@ import javax.swing.JButton;
 @ComponentInfo(name="SunflowComponent", category="Sunflow")
 public class SunflowComponent implements Serializable {
     private final long serialVersionUID=1L; 
-    private Shape3DArray shapes;
-    private float[] orientation;
+    private transient Shape3DArray shapes;
+    private transient float[] orientation;
     
     
     public SunflowComponent() {
@@ -53,11 +54,13 @@ public class SunflowComponent implements Serializable {
 //        return new RenderObject(this.shapes, this.orientation);
 //    }
        
-    private transient VGeometry3D2 geom = null;
+//    private transient VGeometry3D2 geom = null;
+    private transient VGeometry3D geom = null;    
     //@ParamInfo options = "hideConnector=false" , nullIsValid=true
     //@MethodInfo valueStyle="silent"
     @MethodInfo(interactive=true, noGUI=false, hideCloseIcon=true)
-    public RenderObject Render(@ParamInfo(name=" ", style="silent")VGeometry3D2 v)
+//    public RenderObject Render(@ParamInfo(name=" ", style="silent")VGeometry3D2 v)
+    public RenderObject Render(@ParamInfo(name=" ", style="silent")VGeometry3D v)
     {
         System.out.println("-> Render()");
         if (v != null)
